@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title>资源监控</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #app {
+            /* width: 100%; */
+            height: 100%;
+            background-color: #F0F2F5;
+            padding: 22px;
+        }
+
+        .item1 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .el-select .el-input__inner {
+            height: 32px;
+        }
+
+        /* 下面设置右侧按钮居中 */
+        .el-input__suffix {
+            top: 1px;
+        }
+
+        .el-input__icon {
+            line-height: inherit;
+        }
+
+        .el-input__suffix-inner {
+            display: inline-block;
+        }
+
+        .el-range-editor {
+            height: 32px;
+            padding: 0px 10px !important;
+        }
+
+
+
+        .buttonClass {
+            width: 60px;
+            height: 32px;
+            font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+            font-weight: bold;
+            color: #000000;
+            /* line-height: 20px; */
+        }
+
+        .search {
+            width: 60px;
+            height: 32px;
+            color: #FFFFFF;
+            background-color: #009688;
+            border-color: #009688;
+        }
+
+        .search:hover,
+        .search:focus {
+            background-color: #009688;
+            border-color: #009688;
+        }
+
+        .item2 {
+            display: flex;
+        }
+
+        .item3 {
+            display: flex;
+        }
+
+        .dataOverview {
+            width: 70%;
+            height: 406px;
+            background-color: #FFFFFF;
+            margin-right: 20px;
+        }
+
+        .ivrItem {
+            width: 30%;
+            height: 406px;
+            background-color: #FFFFFF;
+
+        }
+
+        .title {
+            margin-top: 11px;
+            padding: 0 0 12px 19px;
+            font-weight: bold;
+            color: #222222;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .dataOverview_middle {
+            display: flex;
+            width: 55%;
+            height: 60px;
+            padding: 14px 0 0 18px;
+        }
+
+        .dataOverview_footer {
+            width: 100%;
+            height: 289px;
+            padding: 14px 10px 0 18px;
+            ;
+
+        }
+
+        .dataOverview_middle_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 18%;
+        }
+
+        .dataOverview_middle_item1 {
+            display: flex;
+            width: 28%;
+        }
+
+        .line {
+            margin: 13px 30px 0 -40px;
+            height: 36px;
+            border-right: 1px solid #EEEEEE;
+        }
+
+        .num {
+            height: 20px;
+            font-size: 14px;
+            font-family: Source Han Sans CN-Bold, Source Han Sans CN;
+            font-weight: bold;
+            color: #233C50;
+            line-height: 20px;
+        }
+
+        .text {
+            height: 20px;
+            font-size: 12px;
+            font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+            font-weight: 500;
+            color: #646464;
+            line-height: 20px;
+            white-space: nowrap;
+        }
+
+        .charts {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .useCharts {
+            width: 80%;
+            height: 60px;
+        }
+
+        .middle {
+            display: flex;
+            width: 50%;
+            height: 60px;
+            padding: 14px 0 0 18px;
+        }
+
+        .middle_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 60%;
+        }
+
+        .middle_item1 {
+            display: flex;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="item1">
+            <div>
+                <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                    <el-form-item label="域:">
+                        <el-select v-model="formInline.domain" style="width: 88px">
+                            <el-option label="区域一" value="shanghai"></el-option>
+                            <el-option label="区域二" value="beijing"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="资源类型：">
+                        <el-select v-model="formInline.resourceType" multiple style="width: 182px">
+                            <el-option label="1" value="1"></el-option>
+                            <el-option label="2" value="2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="日期：">
+                        <el-date-picker v-model="formInline.date" style="width: 248px" type="daterange"
+                            range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="对比日期：" v-if="formInline.compare == '1'">
+                        <el-date-picker v-model="formInline.date2" style="width: 248px" type="daterange"
+                            range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期">
+                        </el-date-picker>
+                    </el-form-item>
+
+                    <el-form-item label="时间范围:">
+                        <el-time-picker is-range v-model="formInline.time" style="width: 144px" range-separator="-"
+                            placeholder="选择时间范围">
+                        </el-time-picker>
+                    </el-form-item>
+                    <el-form-item label="步长:">
+                        <el-select v-model="formInline.space" style="width: 130px">
+                            <el-option label="5分钟" value="0"></el-option>
+                            <el-option label="15分钟" value="1"></el-option>
+                            <el-option label="小时" value="2"></el-option>
+                            <el-option label="日" value="3"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="对比:">
+                        <el-select v-model="formInline.compare" style="width: 90px">
+                            <el-option label="不对比" value="0"></el-option>
+                            <el-option label="对比" value="1"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" size="mini" class="search">搜索</el-button>
+                    </el-form-item>
+                </el-form>
+
+            </div>
+            <div class="item1-export">
+                <el-button size="mini" class="buttonClass">导出</el-button>
+            </div>
+        </div>
+
+        <div class="item2">
+            <div class="dataOverview">
+                <div class="title">
+                    中继数据概览
+                </div>
+                <div class="dataOverview_middle">
+                    <div class="dataOverview_middle_item">
+                        <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                        <div class="text">中继总数</div>
+                    </div>
+                    <!-- <div class="line"></div> -->
+                    <div class="dataOverview_middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">中继-使用</div>
+                        </div>
+                        <div class="useCharts" ref="zjUseCharts"></div>
+                    </div>
+                    <div class="dataOverview_middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">中继-呼出</div>
+                        </div>
+                        <div class="useCharts" ref="zjCallOutCharts"></div>
+                    </div>
+                    <div class="dataOverview_middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">中继-呼入</div>
+                        </div>
+                        <div class="useCharts" ref="zjCallInCharts"></div>
+                    </div>
+                </div>
+                <div class="dataOverview_footer" ref="zjDataOverview"></div>
+            </div>
+            <div class="ivrItem">
+                <div class="title">
+                    IVR
+                </div>
+                <div class="middle">
+                    <div class="middle_item">
+                        <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                        <div class="text">IVR总数</div>
+                    </div>
+                    <!-- <div class="line"></div> -->
+                    <div class="middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">IVR使用数</div>
+                        </div>
+                        <div class="useCharts" ref="ivrUseCharts"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+<script src="./static/vue_main.js"></script>
+<script src="./static/vue_count_to.js"></script>
+<script src="https://unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="./static/echarts.js"></script>
+<script>
+    // Vue.config.productionTip = false //阻止vue在启动时生成生产提示。
+    var app = new Vue({
+        el: "#app",
+        data: {
+            formInline: {
+                domain:"",
+                resourceType: [],
+                date: "",
+                data2:"",
+                time: "",
+                space:"",
+                compare: ""
+            },
+            zjTotal: 123369,
+            total: 90,
+            resourceUsed: 80,
+            callout: 60,
+            color: ['#17A6F0', '#EEF3F5']
+        },
+        watch: {
+            inputValue: {
+                handler(newName, oldName) {
+                    if (this.resourceUsed >= 80) {
+                        this.color = ['#FF5757', '#EEF3F5']
+                    }
+                },
+                immediate: true
+            }
+        },
+        mounted() {
+            this.initZJUse(),
+                this.initZJCallOut(),
+                this.initZJCaiiIn(),
+                this.initIvrUse(),
+                this.initZJDataOverview()
+        },
+        methods: {
+            //中继使用
+            initZJUse() {
+                var myChart = echarts.init(this.$refs.zjUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["30%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.resourceUsed,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: this.total - this.resourceUsed,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                })
+            },
+            //中继呼出
+            initZJCallOut() {
+                var myChart = echarts.init(this.$refs.zjCallOutCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            center: ["30%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                })
+
+            },
+            //中继呼入
+            initZJCaiiIn() {
+                var myChart = echarts.init(this.$refs.zjCallInCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            center: ["30%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                })
+            },
+            //IVR使用数
+            initIvrUse() {
+                var myChart = echarts.init(this.$refs.ivrUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                })
+
+            },
+            initZJDataOverview() {
+                var myChart = echarts.init(this.$refs.zjDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['中继使用', '中继呼入', '中继呼出'],
+                        right: '2%',
+
+                    },
+                    grid: {
+                        left: '0%',
+                        right: '2%',
+                        bottom: '10%',
+                        containLabel: true
+                    },
+
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '中继呼入',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [220, 182, 191, 234, 290, 330, 310, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '中继呼出',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [150, 232, 201, 154, 190, 330, 410, 132, 101, 134, 90, 230, 210]
+                        }
+
+                    ]
+
+                })
+                   window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                })
+            }
+
+        },
+    });
+
+
+
+</script>
+
+</html>
