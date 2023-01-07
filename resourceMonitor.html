@@ -76,22 +76,33 @@
             display: flex;
         }
 
-        .item3 {
-            display: flex;
-        }
+
 
         .dataOverview {
-            width: 70%;
+            width: 68%;
             height: 406px;
             background-color: #FFFFFF;
             margin-right: 20px;
         }
 
         .ivrItem {
-            width: 30%;
+            width: 32%;
             height: 406px;
             background-color: #FFFFFF;
 
+        }
+
+        .record {
+            width: 50%;
+            height: 406px;
+            margin-right: 20px;
+            background-color: #FFFFFF;
+        }
+
+        .sitUser {
+            width: 50%;
+            height: 406px;
+            background-color: #FFFFFF;
         }
 
         .title {
@@ -104,7 +115,7 @@
 
         .dataOverview_middle {
             display: flex;
-            width: 55%;
+            width: 50%;
             height: 60px;
             padding: 14px 0 0 18px;
         }
@@ -112,27 +123,21 @@
         .dataOverview_footer {
             width: 100%;
             height: 289px;
-            padding: 14px 10px 0 18px;
-            ;
-
+            /* padding: 0 0 0 18px; */
         }
 
         .dataOverview_middle_item {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 18%;
+            width: 13%;
+            border-right: 2px solid #EEEEEE;
+            margin-right: 25px;
         }
 
         .dataOverview_middle_item1 {
             display: flex;
-            width: 28%;
-        }
-
-        .line {
-            margin: 13px 30px 0 -40px;
-            height: 36px;
-            border-right: 1px solid #EEEEEE;
+            width: 25%;
         }
 
         .num {
@@ -162,13 +167,13 @@
         }
 
         .useCharts {
-            width: 80%;
+            width: 70%;
             height: 60px;
         }
 
         .middle {
             display: flex;
-            width: 50%;
+            width: 60%;
             height: 60px;
             padding: 14px 0 0 18px;
         }
@@ -177,12 +182,38 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 60%;
+            width: 23%;
+            border-right: 2px solid #EEEEEE;
+            margin-right: 25px;
         }
 
         .middle_item1 {
             display: flex;
-            width: 80%;
+            width: 50%;
+        }
+
+        .item3 {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .item3_list {
+            display: flex;
+            width: 68%;
+            height: 406px;
+            margin-right: 20px;
+        }
+
+        .item4 {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .item4_list {
+            display: flex;
+            width: 68%;
+            height: 406px;
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -255,7 +286,6 @@
                         <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
                         <div class="text">中继总数</div>
                     </div>
-                    <!-- <div class="line"></div> -->
                     <div class="dataOverview_middle_item1">
                         <div class="charts">
                             <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
@@ -289,7 +319,6 @@
                         <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
                         <div class="text">IVR总数</div>
                     </div>
-                    <!-- <div class="line"></div> -->
                     <div class="middle_item1">
                         <div class="charts">
                             <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
@@ -298,6 +327,133 @@
                         <div class="useCharts" ref="ivrUseCharts"></div>
                     </div>
                 </div>
+                <div class="dataOverview_footer" ref="ivrDataOverview"></div>
+            </div>
+        </div>
+        <div class="item3">
+            <div class="item3_list">
+                <div class="record">
+                    <div class="title">
+                        录音
+                    </div>
+                    <div class="middle">
+                        <div class="middle_item">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">录音总数</div>
+                        </div>
+                        <div class="middle_item1">
+                            <div class="charts">
+                                <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                                <div class="text">录音使用数</div>
+                            </div>
+                            <div class="useCharts" ref="recordUseCharts"></div>
+                        </div>
+                    </div>
+                    <div class="dataOverview_footer" ref="recordDataOverview"></div>
+                </div>
+                <div class="sitUser">
+                    <div class="title">
+                        坐席
+                    </div>
+                    <div class="middle">
+                        <div class="middle_item">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">坐席总数</div>
+                        </div>
+                        <div class="middle_item1">
+                            <div class="charts">
+                                <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                                <div class="text">坐席在线数</div>
+                            </div>
+                            <div class="useCharts" ref="sitUserCharts"></div>
+                        </div>
+                    </div>
+                    <div class="dataOverview_footer" ref="sitUserDataOverview"></div>
+
+                </div>
+            </div>
+            <div class="ivrItem">
+                <div class="title">
+                    会议资源
+                </div>
+                <div class="middle">
+                    <div class="middle_item">
+                        <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                        <div class="text">会议总数</div>
+                    </div>
+                    <div class="middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">会议使用数</div>
+                        </div>
+                        <div class="useCharts" ref="conferenceUseCharts"></div>
+                    </div>
+                </div>
+                <div class="dataOverview_footer" ref="conferenceDataOverview"></div>
+
+            </div>
+        </div>
+        <div class="item4">
+            <div class="item4_list">
+                <div class="record">
+                    <div class="title">
+                        MS资源
+                    </div>
+                    <div class="middle">
+                        <div class="middle_item">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">MS总数</div>
+                        </div>
+                        <div class="middle_item1">
+                            <div class="charts">
+                                <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                                <div class="text">MS使用数</div>
+                            </div>
+                            <div class="useCharts" ref="MSUseCharts"></div>
+                        </div>
+                    </div>
+                    <div class="dataOverview_footer" ref="MSDataOverview"></div>
+                </div>
+                <div class="sitUser">
+                    <div class="title">
+                        ASR资源
+                    </div>
+                    <div class="middle">
+                        <div class="middle_item">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">ASR总数</div>
+                        </div>
+                        <div class="middle_item1">
+                            <div class="charts">
+                                <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                                <div class="text">ASR使用数</div>
+                            </div>
+                            <div class="useCharts" ref="ASRUseCharts"></div>
+                        </div>
+                    </div>
+                    <div class="dataOverview_footer" ref="ASRDataOverview"></div>
+
+                </div>
+            </div>
+            <div class="ivrItem">
+                <div class="title">
+                    TTS资源
+                </div>
+                <div class="middle">
+                    <div class="middle_item">
+                        <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                        <div class="text">TTS总数</div>
+                    </div>
+                    <div class="middle_item1">
+                        <div class="charts">
+                            <div class="num"><count-to :start-val='0' :end-val='zjTotal'></count-to></div>
+                            <div class="text">TTS使用数</div>
+                        </div>
+                        <div class="useCharts" ref="TTSUseCharts"></div>
+                    </div>
+                </div>
+                <div class="dataOverview_footer" ref="TTSDataOverview"></div>
+
             </div>
         </div>
 
@@ -308,7 +464,7 @@
 </body>
 <script src="./static/vue_main.js"></script>
 <script src="./static/vue_count_to.js"></script>
-<script src="https://unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="./static/elementUI.js"></script>
 <script src="./static/echarts.js"></script>
 <script>
     // Vue.config.productionTip = false //阻止vue在启动时生成生产提示。
@@ -316,12 +472,12 @@
         el: "#app",
         data: {
             formInline: {
-                domain:"",
+                domain: "",
                 resourceType: [],
                 date: "",
-                data2:"",
+                data2: "",
                 time: "",
-                space:"",
+                space: "",
                 compare: ""
             },
             zjTotal: 123369,
@@ -345,7 +501,20 @@
                 this.initZJCallOut(),
                 this.initZJCaiiIn(),
                 this.initIvrUse(),
-                this.initZJDataOverview()
+                this.initZJDataOverview(),
+                this.initIvrDataOverview(),
+                this.initRecordUse(),
+                this.initRecordDataOverview(),
+                this.initSitUser(),
+                this.initSitUserDataOverview(),
+                this.initConference(),
+                this.initConferenceDataOverview(),
+                this.initMS(),
+                this.initMSDataOverview(),
+                this.initASR(),
+                this.initASRDataOverview(),
+                this.initTTS(),
+                this.initTTSDataOverview()
         },
         methods: {
             //中继使用
@@ -402,7 +571,7 @@
                 })
                 window.addEventListener('resize', () => {
                     this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
-                })
+                }, false)
             },
             //中继呼出
             initZJCallOut() {
@@ -413,7 +582,7 @@
                         {
                             type: 'pie',
                             radius: ['80%', '100%'],
-                            center: ["30%", "50%"],
+                            // center: ["30%", "50%"],
                             avoidLabelOverlap: false,
                             hoverAnimation: false,   //关闭放大动画
                             selectedOffset: 0,     //选中块的偏移量
@@ -458,7 +627,7 @@
                 })
                 window.addEventListener('resize', () => {
                     this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
-                })
+                }, false)
 
             },
             //中继呼入
@@ -470,7 +639,7 @@
                         {
                             type: 'pie',
                             radius: ['80%', '100%'],
-                            center: ["30%", "50%"],
+                            // center: ["30%", "50%"],
                             avoidLabelOverlap: false,
                             hoverAnimation: false,   //关闭放大动画
                             selectedOffset: 0,     //选中块的偏移量
@@ -516,7 +685,7 @@
                 })
                 window.addEventListener('resize', () => {
                     this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
-                })
+                }, false)
             },
             //IVR使用数
             initIvrUse() {
@@ -573,9 +742,10 @@
                 })
                 window.addEventListener('resize', () => {
                     this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
-                })
+                }, false)
 
             },
+            //中继总览
             initZJDataOverview() {
                 var myChart = echarts.init(this.$refs.zjDataOverview);
                 myChart.setOption({
@@ -588,49 +758,783 @@
 
                     },
                     grid: {
-                        left: '0%',
+                        left: '1%',
                         right: '2%',
-                        bottom: '10%',
+                        bottom: '5%',
                         containLabel: true
                     },
 
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                        },
+                        {
+                            name: '中继呼入',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [220, 182, 191, 234, 290, 330, 310, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                        },
+                        {
+                            name: '中继呼出',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [150, 232, 201, 154, 190, 330, 410, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                        }
+
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
+            //IVR总览
+            initIvrDataOverview() {
+                var myChart = echarts.init(this.$refs.ivrDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
                         data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
                     },
                     series: [
                         {
                             name: '中继使用',
                             type: 'line',
                             stack: 'Total',
-                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210]
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
                         },
+
+
+                    ]
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //录音使用数
+            initRecordUse() {
+                var myChart = echarts.init(this.$refs.recordUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
                         {
-                            name: '中继呼入',
-                            type: 'line',
-                            stack: 'Total',
-                            data: [220, 182, 191, 234, 290, 330, 310, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name: '中继呼出',
-                            type: 'line',
-                            stack: 'Total',
-                            data: [150, 232, 201, 154, 190, 330, 410, 132, 101, 134, 90, 230, 210]
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
                         }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //录音总览
+            initRecordDataOverview() {
+                var myChart = echarts.init(this.$refs.recordDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+
 
                     ]
 
                 })
-                   window.addEventListener('resize', () => {
+                window.addEventListener('resize', () => {
                     this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
-                })
-            }
+                }, false)
+            },
+            //坐席在线数
+            initSitUser() {
+                var myChart = echarts.init(this.$refs.sitUserCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
 
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //坐席总览
+            initSitUserDataOverview() {
+                var myChart = echarts.init(this.$refs.sitUserDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+
+
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
+            //会议使用数
+            initConference() {
+                var myChart = echarts.init(this.$refs.conferenceUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //会议总览
+            initConferenceDataOverview() {
+                var myChart = echarts.init(this.$refs.conferenceDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+
+
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
+            //MS使用数
+            initMS() {
+                var myChart = echarts.init(this.$refs.MSUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //MS总览
+            initMSDataOverview() {
+                var myChart = echarts.init(this.$refs.MSDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+
+
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
+            //ASR使用数
+            initASR() {
+                var myChart = echarts.init(this.$refs.ASRUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //ASR总览
+            initASRDataOverview() {
+                var myChart = echarts.init(this.$refs.ASRDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+
+
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
+            //TTS使用数
+            initTTS() {
+                var myChart = echarts.init(this.$refs.TTSUseCharts);
+                myChart.setOption({
+                    color: this.color,
+                    series: [
+                        {
+                            type: 'pie',
+                            radius: ['80%', '100%'],
+                            // center: ["40%", "50%"],
+                            avoidLabelOverlap: false,
+                            hoverAnimation: false,   //关闭放大动画
+                            selectedOffset: 0,     //选中块的偏移量
+                            label: {
+                                show: false,
+                                position: 'center',
+                                formatter: '{d}%'
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                {
+                                    value: this.callout,
+                                    name: '已用资源',
+                                    selected: true,     //默认选中第一块
+                                    label: {
+                                        show: true,     //默认显示第一块
+                                        fontSize: '16',
+                                        fontWeight: 'bold',
+                                        color: this.color[0]
+
+                                    }
+                                },
+                                {
+                                    value: 100 - this.callout,
+                                    name: '剩余资源',
+                                    label: {
+                                        show: false,     //默认显示第一块
+
+                                    }
+                                },
+
+                            ]
+                        }
+                    ]
+
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+
+            },
+            //TTS总览
+            initTTSDataOverview() {
+                var myChart = echarts.init(this.$refs.TTSDataOverview);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '3%',
+                        bottom: '5%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false, //隐藏x轴刻度
+                        },
+                        // axisLabel:{
+                        //   rotate:30,
+                        // },
+                        data: ['08:15', '09:15', '10:15', '11:15', '12:15', '13:15', '14:15', '15:15', '16:15', '17:15', '18:15', '19:15', '20:15']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            show: true,//显示Y轴
+                        },
+                    },
+                    series: [
+                        {
+                            name: '中继使用',
+                            type: 'line',
+                            stack: 'Total',
+                            data: [120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230, 210],
+                            symbol: "none",
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        color: "#16AFFF", //改变折线颜色
+                                    },
+                                },
+                            },
+                        },
+                    ]
+                })
+                window.addEventListener('resize', () => {
+                    this.myChart.resize() //当浏览器窗口大小发生变化时，图表可以进行自适应
+                }, false)
+            },
         },
+
     });
 
 
